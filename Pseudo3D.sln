@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pseudo3D", "Pseudo3D.csproj", "{09198E00-4915-4A7B-888E-D4690545887A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09198E00-4915-4A7B-888E-D4690545887A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09198E00-4915-4A7B-888E-D4690545887A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09198E00-4915-4A7B-888E-D4690545887A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09198E00-4915-4A7B-888E-D4690545887A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEE2D388-ADD4-4C74-91AC-3DFC437A5038}
+	EndGlobalSection
+EndGlobal
