@@ -17,6 +17,11 @@ namespace Pseudo3D
 
         public static string mapS = "";
 
+        public static Clock clock = new Clock();
+        public static float deltaTime = 0;
+        public static int frameCount = 0; // счётчик кадров
+        public static float fps = 0; // FPS
+
         static void Main()
         {
             // ИНИЦИАЛИЗАЦИЯ ОБЪЕКТОВ
@@ -38,7 +43,8 @@ namespace Pseudo3D
             window.Closed += (sender, e) =>
             {
                 window.Close();
-                Console.WriteLine("Close");
+                Console.Clear();
+                Console.WriteLine(" Close ");
             };
 
             window.Resized += (sender, e) =>
@@ -46,27 +52,32 @@ namespace Pseudo3D
                 view.Reset(new FloatRect(0, 0, e.Width, e.Height));
             };
 
+
             // ЛОГИКА ОКНА
             while (window.IsOpen)
             {
+                UpdateFPS();
+
+                deltaTime = clock.Restart().AsSeconds();
                 window.DispatchEvents();
                 Console.SetCursorPosition(0, 0);
 
                 if (window.HasFocus())
                 {
                     player.Move();
+                    player.RayCast();
                 }
 
                 window.SetView(view);
                 window.Clear();
 
+                window.Draw(player.walls);
                 map.Draw();
 
                 window.Display();
             }
         }
 
-        // Метод для инициализации карты на основе строки
         static void InitializeMap()
         {
             string[] rows = mapS.Split('\n');
@@ -76,10 +87,20 @@ namespace Pseudo3D
                 {
                     if (rows[y][x] == '#')
                     {
-                        // Создаем блок размером 100x100
                         map.NewObject(new FloatRect(x * 100, y * 100, 100, 100));
                     }
                 }
+            }
+        }
+
+        public static void UpdateFPS()
+        {
+            frameCount++;
+            if (frameCount >= 60)
+            {
+                fps = frameCount / deltaTime;
+                Console.WriteLine($"FPS: {fps}");
+                frameCount = 0;
             }
         }
     }

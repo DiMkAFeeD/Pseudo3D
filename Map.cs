@@ -55,18 +55,15 @@ namespace Pseudo3D
             float scaleX = viewSize.X / size.X;
             float scaleY = viewSize.Y / size.Y;
 
-            // Рисуем плоскость карты
             Program.window.Draw(mapPlane);
 
-            // Масштабируем и рисуем ViewCamera
             if (viewCamera.VertexCount >= 2)
             {
-                VertexArray scaledViewCamera = new VertexArray(PrimitiveType.TriangleFan);
+                VertexArray scaledViewCamera = new VertexArray(PrimitiveType.Lines);
 
                 for (int i = 0; i < viewCamera.VertexCount; ++i)
                 {
                     Vertex vertex = viewCamera[(uint)i];
-                    // Масштабируем каждую вершину
                     Vector2f scaledPosition = new Vector2f(vertex.Position.X * scaleX, vertex.Position.Y * scaleY);
                     scaledViewCamera.Append(new Vertex(scaledPosition, vertex.Color));
                 }
@@ -74,17 +71,15 @@ namespace Pseudo3D
                 Program.window.Draw(scaledViewCamera);
             }
 
-            // Масштабируем и рисуем Player
             CircleShape scaledPlayer = new CircleShape
             {
                 Position = new Vector2f(player.Position.X * scaleX, player.Position.Y * scaleY),
-                Radius = player.Radius * Math.Min(scaleX, scaleY), // Масштабируем радиус пропорционально
+                Radius = player.Radius * Math.Min(scaleX, scaleY),
                 FillColor = player.FillColor
             };
 
             Program.window.Draw(scaledPlayer);
 
-            // Масштабируем и рисуем все объекты в списке boxes
             foreach (RectangleShape box in boxes)
             {
                 RectangleShape scaledBox = new RectangleShape
