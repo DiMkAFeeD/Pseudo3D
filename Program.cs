@@ -12,9 +12,10 @@ namespace Pseudo3D
         public static RenderWindow window = new RenderWindow(new VideoMode(1280, 720), "3D game!");
         private static View view = window.GetView();
 
+        public static Player player = new Player();
         public static Map map = new Map(new Vector2f(1000, 1000), new Vector2f(200, 200));
 
-        public static string mapS;
+        public static string mapS = "";
 
         static void Main()
         {
@@ -49,10 +50,11 @@ namespace Pseudo3D
             while (window.IsOpen)
             {
                 window.DispatchEvents();
+                Console.SetCursorPosition(0, 0);
 
                 if (window.HasFocus())
                 {
-
+                    player.Move();
                 }
 
                 window.SetView(view);
